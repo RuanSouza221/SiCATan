@@ -1,0 +1,11 @@
+<phpunit displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true">
+    <php>
+        <env name="DATABASE_HOST" value="127.0.0.1" />
+        <env name="DATABASE_USER" value="root" />
+        <env name="DATABASE_PASS" value="" />
+        <env name="DATABASE_NAME" value="SiCATan" />
+    </php>
+</phpunit>
