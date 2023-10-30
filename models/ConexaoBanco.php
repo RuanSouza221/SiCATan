@@ -5,7 +5,7 @@ use Exception;
 use PDO;
 use PDOException;
 
-final class ConexaoBanco
+class ConexaoBanco
 {
 
     private PDO $db;
