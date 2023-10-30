@@ -5,7 +5,7 @@ use Exception;
 use PDO;
 use PDOException;
 
-final class ConexaoBanco
+class ConexaoBanco
 {
 
     private PDO $db;
@@ -53,8 +53,7 @@ final class ConexaoBanco
             $resultado = $_query->execute();
 
             return match (strtoupper(explode(" ", $_sql)[0])) {
-                "INSERT" => $this->db->lastInsertId(),
-                "UPDATE", "DELETE" => $_query->rowCount(),
+                "INSERT","UPDATE", "DELETE" => $_query->rowCount(),
                 "SELECT" => $_query->fetchAll(),
                 default => $resultado,
             };
@@ -64,7 +63,7 @@ final class ConexaoBanco
         }
     }
 
-    public function constroiBind(string $_campo, string|array|int $_valor, string $_operador="=" ): void
+    public function constroiBind(string $_campo, string|array|int|null $_valor, string $_operador="=" ): void
     {
         switch ($_operador) {
             case "BETWEEN":
@@ -130,17 +129,20 @@ final class ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function selectSimples(string $_tabela, array $_where, array $_colunas = ['*']): array|false
+    public function selectSimples(string $_tabela, array $_where = [], array $_colunas = ['*']): array|false
     {
         $select = implode(', ',$_colunas);
 
-        foreach ($_where as $chave => $valor){
-            $this->constroiBind($chave,$valor);
+        if(count($_where) > 0){
+            foreach ($_where as $chave => $valor){
+                $this->constroiBind($chave,$valor);
+            }
+            $where = "WHERE {$this->constroiWhere()};";
         }
 
         $_sql ="SELECT $select 
                 FROM $_tabela 
-                WHERE {$this->constroiWhere()}";
+                ". ($where ?? ";");
 
         return $this->executar($_sql);
     }

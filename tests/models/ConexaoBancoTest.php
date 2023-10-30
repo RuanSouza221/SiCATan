@@ -86,7 +86,7 @@ final class ConexaoBancoTest extends TestCase
         $consulta = $ConexaoBanco->executar($sql);
 
         $this->assertIsNotArray($consulta);
-        $this->assertSame(2,$consulta);
+        $this->assertSame(1,$consulta);
     }
 
     public function testExecutarUpdate(): void
@@ -212,7 +212,7 @@ final class ConexaoBancoTest extends TestCase
         $consulta = $ConexaoBanco->insertSimples("TabelaTeste",$insert);
 
         $this->assertIsNotArray($consulta);
-        $this->assertSame(3,$consulta);
+        $this->assertSame(1,$consulta);
 
         $insert["descricao"] = "descricaoTeste4";
 
@@ -220,7 +220,7 @@ final class ConexaoBancoTest extends TestCase
 
         $this->assertIsNotArray($consulta);
         $this->assertIsInt($consulta);
-        $this->assertSame(4,$consulta);
+        $this->assertSame(1,$consulta);
     }
 
     public function testUpdateSimples(): void
