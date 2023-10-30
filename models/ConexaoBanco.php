@@ -63,7 +63,7 @@ class ConexaoBanco
         }
     }
 
-    public function constroiBind(string $_campo, string|array|int $_valor, string $_operador="=" ): void
+    public function constroiBind(string $_campo, string|array|int|null $_valor, string $_operador="=" ): void
     {
         switch ($_operador) {
             case "BETWEEN":
@@ -137,14 +137,12 @@ class ConexaoBanco
             foreach ($_where as $chave => $valor){
                 $this->constroiBind($chave,$valor);
             }
-            $where = "WHERE {$this->constroiWhere()}";
+            $where = "WHERE {$this->constroiWhere()};";
         }
-
-
 
         $_sql ="SELECT $select 
                 FROM $_tabela 
-                $where";
+                ". ($where ?? ";");
 
         return $this->executar($_sql);
     }
