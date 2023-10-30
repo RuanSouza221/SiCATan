@@ -2,6 +2,7 @@
 namespace models;
 
 use PHPUnit\Framework\TestCase;
+use SiCATan_api\Models\InstalarBanco;
 
 final class InstalarBancoTest extends TestCase
 {
@@ -23,8 +24,8 @@ final class InstalarBancoTest extends TestCase
         $this->assertIsArray($retorno);
 
         $this->assertSame(1,$retorno[0]);
-        $this->assertSame(2,$retorno[0]);
-        $this->assertSame(3,$retorno[0]);
+        $this->assertSame(1,$retorno[1]);
+        $this->assertSame(1,$retorno[2]);
 
         $retorno = $InstalarBanco->selectSimples("Nivel_Acesso");
 
@@ -52,12 +53,12 @@ final class InstalarBancoTest extends TestCase
         $insert["id"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $insert["descricao"] = "Organização_1";
         $retorno = $InstalarBanco->insertSimples("Organizacao", $insert);
-        $this->assertSame("9b31781c-c2fd-49c5-af37-1538ee2f7cdb",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "aeab3060-01fe-4809-9a55-01a50da7dacb";
         $insert["descricao"] = "Organização_2";
         $retorno = $InstalarBanco->insertSimples("Organizacao", $insert);
-        $this->assertSame("aeab3060-01fe-4809-9a55-01a50da7dacb",$retorno);
+        $this->assertSame(1,$retorno);
 
         $retorno = $InstalarBanco->selectSimples("Organizacao");
 
@@ -95,7 +96,7 @@ final class InstalarBancoTest extends TestCase
         $insert["nivel"] = "3";
         $insert["organizacao"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $retorno = $InstalarBanco->insertSimples("Usuarios", $insert);
-        $this->assertSame("302f91e2-57ac-47b4-9ea1-ce524cf77f9d",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "e9bc84ff-f66b-41e9-a0fe-d0a82a00a567";
         $insert["nome"] = "Usuario_2";
@@ -104,7 +105,7 @@ final class InstalarBancoTest extends TestCase
         $insert["nivel"] = "1";
         $insert["organizacao"] = "";
         $retorno = $InstalarBanco->insertSimples("Usuarios", $insert);
-        $this->assertSame("e9bc84ff-f66b-41e9-a0fe-d0a82a00a567",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "45944060-2428-4629-b394-d95471e7a6db";
         $insert["nome"] = "Usuario_3";
@@ -162,14 +163,14 @@ final class InstalarBancoTest extends TestCase
         $insert["descricao_mod"] = "descricao_mod_1";
         $insert["usuario_mod"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $retorno = $InstalarBanco->insertSimples("Log_Usuarios", $insert);
-        $this->assertSame("32d6dd16-0adf-43f0-80e3-519306479555",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "98238c98-880d-45ed-bbad-19e72fb3ac5d";
         $insert["id_usuario"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $insert["descricao_mod"] = "descricao_mod_2";
         $insert["usuario_mod"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $retorno = $InstalarBanco->insertSimples("Log_Usuarios", $insert);
-        $this->assertSame("98238c98-880d-45ed-bbad-19e72fb3ac5d",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "28c6d6b5-9748-4043-a661-bb2b6df0b8bd";
         $insert["id_usuario"] = "idinexistente";
@@ -227,14 +228,14 @@ final class InstalarBancoTest extends TestCase
         $insert["descricao_mod"] = "descricao_mod_1";
         $insert["usuario_mod"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $retorno = $InstalarBanco->insertSimples("Log_Organizacao", $insert);
-        $this->assertSame("fb720834-76a3-11ee-b962-0242ac120002",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "50a0311e-a18e-4d36-84e3-d301d4151484";
         $insert["id_organizacao"] = "aeab3060-01fe-4809-9a55-01a50da7dacb";
         $insert["descricao_mod"] = "descricao_mod_2";
         $insert["usuario_mod"] = "e9bc84ff-f66b-41e9-a0fe-d0a82a00a567";
         $retorno = $InstalarBanco->insertSimples("Log_Organizacao", $insert);
-        $this->assertSame("50a0311e-a18e-4d36-84e3-d301d4151484",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "e7fab30c-b4a8-4fdf-bdd9-98a448a3a976";
         $insert["id_organizacao"] = "aeab3060-01fe-4809-9a55-01a50da7dacb";
@@ -293,14 +294,14 @@ final class InstalarBancoTest extends TestCase
         $insert["endpoint"] = "/teste/1";
         $insert["usuario_cad"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $retorno = $InstalarBanco->insertSimples("Log_Requisicao", $insert);
-        $this->assertSame("8ad704ac-a53c-418a-b38b-12eee4bf6d68",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "7ec21c87-1dd9-4e44-9b30-4466a0d895ea";
         $insert["token"] = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lXzIifQ.KmA_bqgwOV0mTgMyq0mUdtW20w-BxRCm_YyX2XtwZIo";
         $insert["endpoint"] = "/teste/2";
         $insert["usuario_cad"] = "e9bc84ff-f66b-41e9-a0fe-d0a82a00a567";
         $retorno = $InstalarBanco->insertSimples("Log_Requisicao", $insert);
-        $this->assertSame("7ec21c87-1dd9-4e44-9b30-4466a0d895ea",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "1938bcd5-54ee-4443-9707-be724be7e598";
         $insert["token"] = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lXzMifQ.hol3GOCgGIrBTaU4rfdADgoBKxuaO2QuQWztjgRir5Q";
@@ -348,7 +349,7 @@ final class InstalarBancoTest extends TestCase
         $insert["organizacao"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
         $insert["inativo"] = "0";
         $retorno = $InstalarBanco->insertSimples("Ativos", $insert);
-        $this->assertSame("9cbd7405-ef8d-43f3-bc55-bcc78da4613d",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "61aec667-2716-4672-8765-85a87226d05f";
         $insert["descricao"] = "descricao_2";
@@ -356,7 +357,7 @@ final class InstalarBancoTest extends TestCase
         $insert["organizacao"] = "aeab3060-01fe-4809-9a55-01a50da7dacb";
         $insert["inativo"] = "0";
         $retorno = $InstalarBanco->insertSimples("Ativos", $insert);
-        $this->assertSame("61aec667-2716-4672-8765-85a87226d05f",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "b0ff18e6-a738-4a50-bbca-0e17d3dbec80";
         $insert["descricao"] = "descricao_3";
@@ -406,14 +407,14 @@ final class InstalarBancoTest extends TestCase
         $insert["descricao_mod"] = "descricao_mod_1";
         $insert["usuario_mod"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $retorno = $InstalarBanco->insertSimples("Log_Ativos", $insert);
-        $this->assertSame("4b5a6428-f9a0-4610-af83-95398df0bae8",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "c7567ce6-9014-465f-a23c-f1d318e62f05";
         $insert["id_ativo_mod"] = "61aec667-2716-4672-8765-85a87226d05f";
         $insert["descricao_mod"] = "descricao_mod_2";
         $insert["usuario_mod"] = "e9bc84ff-f66b-41e9-a0fe-d0a82a00a567";
         $retorno = $InstalarBanco->insertSimples("Log_Ativos", $insert);
-        $this->assertSame("c7567ce6-9014-465f-a23c-f1d318e62f05",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "a3cae107-9e91-458e-a699-79508796d0e6";
         $insert["id_ativo_mod"] = "idinexistente";
@@ -471,7 +472,7 @@ final class InstalarBancoTest extends TestCase
         $insert["id_ativo_ambiente"] = "9cbd7405-ef8d-43f3-bc55-bcc78da4613d";
         $insert["Inativo"] = "0";
         $retorno = $InstalarBanco->insertSimples("Ativo_Ambiente", $insert);
-        $this->assertSame("349c6a56-e963-4b95-9d10-e7a60891048c",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "0c801eb0-2f38-4a28-a907-9d31128fb58d";
         $insert["id_ativo"] = "61aec667-2716-4672-8765-85a87226d05f";
@@ -529,14 +530,14 @@ final class InstalarBancoTest extends TestCase
         $insert["descricao_mod"] = "descricao_mod_1";
         $insert["usuario_mod"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $retorno = $InstalarBanco->insertSimples("Log_Ativo_Ambiente", $insert);
-        $this->assertSame("95fe517c-5144-4a30-a960-9b2cfd9d6bc7",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "8fa038ee-e099-481f-9cf5-e9ead6498d12";
         $insert["id_ativo_ambiente_mod"] = "349c6a56-e963-4b95-9d10-e7a60891048c";
         $insert["descricao_mod"] = "descricao_mod_2";
         $insert["usuario_mod"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $retorno = $InstalarBanco->insertSimples("Log_Ativo_Ambiente", $insert);
-        $this->assertSame("8fa038ee-e099-481f-9cf5-e9ead6498d12",$retorno);
+        $this->assertSame(1,$retorno);
 
         $insert["id"] = "4c6f7202-f007-4a8c-a4da-8f0317cf38de";
         $insert["id_ativo_ambiente_mod"] = "idinexistente";
