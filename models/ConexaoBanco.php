@@ -130,17 +130,22 @@ final class ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function selectSimples(string $_tabela, array $_where, array $_colunas = ['*']): array|false
+    public function selectSimples(string $_tabela, array $_where = [], array $_colunas = ['*']): array|false
     {
         $select = implode(', ',$_colunas);
 
-        foreach ($_where as $chave => $valor){
-            $this->constroiBind($chave,$valor);
+        if(count($_where) > 0){
+            foreach ($_where as $chave => $valor){
+                $this->constroiBind($chave,$valor);
+            }
+            $where = "WHERE {$this->constroiWhere()}";
         }
+
+
 
         $_sql ="SELECT $select 
                 FROM $_tabela 
-                WHERE {$this->constroiWhere()}";
+                $where";
 
         return $this->executar($_sql);
     }
