@@ -13,8 +13,28 @@ final class InstalarBancoTest extends TestCase
         $this->assertInstanceOf(InstalarBanco::class, $InstalarBanco);
     }
 
+    public function testDropTable(): void
+    {
+        $InstalarBanco = new InstalarBanco();
+
+        $retorno = $InstalarBanco->executar("DROP TABLE IF EXISTS Nivel_Acesso,
+                                                                        Organizacao,
+                                                                        Organizacao_Log,
+                                                                        Usuarios,
+                                                                        Log_Usuarios,
+                                                                        Log_Organizacao,
+                                                                        Log_Requisicao,
+                                                                        Ativos,
+                                                                        Log_Ativos,
+                                                                        Ativo_Ambiente,
+                                                                        Log_Ativo_Ambiente;");
+
+        $this->assertTrue($retorno);
+    }
+
     public function testCriarNivelAcesso(): void
     {
+
         $InstalarBanco = new InstalarBanco();
 
         $retorno = $InstalarBanco->criarNivelAcesso();
