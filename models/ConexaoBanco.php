@@ -53,8 +53,7 @@ final class ConexaoBanco
             $resultado = $_query->execute();
 
             return match (strtoupper(explode(" ", $_sql)[0])) {
-                "INSERT" => $this->db->lastInsertId(),
-                "UPDATE", "DELETE" => $_query->rowCount(),
+                "INSERT","UPDATE", "DELETE" => $_query->rowCount(),
                 "SELECT" => $_query->fetchAll(),
                 default => $resultado,
             };
