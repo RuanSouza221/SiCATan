@@ -12,9 +12,9 @@ final class InstalarBanco extends ConexaoBanco
 
         $retorno = $this->executar($_sql);
 
-        if(!$retorno){
+        if(!$retorno)
             return $retorno;
-        } else {
+        else {
             unset($retorno);
             $retorno[0] = $this->insertSimples("Nivel_Acesso",["id" => "1", "descricao" => "Dono"]);
             $retorno[1] = $this->insertSimples("Nivel_Acesso",["id" => "2", "descricao" => "Administrador"]);
@@ -35,7 +35,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarUsuarios()
+    public function criarUsuarios(): bool
     {
         $_sql = "CREATE TABLE Usuarios (
                     id          CHAR(36) PRIMARY KEY UNIQUE,
@@ -53,7 +53,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarUsuarioLog()
+    public function criarUsuarioLog(): bool
     {
         $_sql = "CREATE TABLE Log_Usuarios (
                     id              CHAR(36) PRIMARY KEY UNIQUE,
@@ -68,7 +68,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarOrganizacaoLog()
+    public function criarOrganizacaoLog(): bool
     {
         $_sql = "CREATE TABLE Log_Organizacao (
                     id              CHAR(36) PRIMARY KEY UNIQUE,
@@ -83,7 +83,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarUsuarioRequisicao()
+    public function criarUsuarioRequisicao(): bool
     {
         $_sql = "CREATE TABLE Log_Requisicao (
                     id          CHAR(36) PRIMARY KEY UNIQUE,
@@ -97,7 +97,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarAtivos()
+    public function criarAtivos(): bool
     {
         $_sql = "CREATE TABLE Ativos (
                     id          CHAR(36) PRIMARY KEY UNIQUE,
@@ -112,7 +112,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarLogAtivo()
+    public function criarLogAtivo(): bool
     {
         $_sql = "CREATE TABLE Log_Ativos (
                     id              CHAR(36) PRIMARY KEY UNIQUE,
@@ -127,7 +127,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarAtivoAmbiente()
+    public function criarAtivoAmbiente(): bool
     {
         $_sql = "CREATE TABLE Ativo_Ambiente (
                     id                  CHAR(36) PRIMARY KEY UNIQUE,
@@ -143,7 +143,7 @@ final class InstalarBanco extends ConexaoBanco
         return $this->executar($_sql);
     }
 
-    public function criarLogAtivoAmbiente()
+    public function criarLogAtivoAmbiente(): bool
     {
         $_sql = "CREATE TABLE Log_Ativo_Ambiente (
                     id                      CHAR(36) PRIMARY KEY UNIQUE,
