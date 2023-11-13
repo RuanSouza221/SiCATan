@@ -148,7 +148,7 @@ final class UsuariosBancoTest extends TestCase
 
         $_dados["id"] = "c2aeea10-6cae-435c-bb6d-ae302cb6cb53";
 
-        $retorno = $UsuariosBanco->buscarUsuario($_dados);
+        $retorno = $UsuariosBanco->buscarUsuario($_dados,true);
         $this->assertIsArray($retorno);
         unset($_dados);
         $this->assertCount(1,$retorno);
@@ -159,7 +159,7 @@ final class UsuariosBancoTest extends TestCase
         $this->assertSame("Usuario_1_1@mail.xyz",$retorno[0]["email"]);
         $this->assertTrue(password_verify("teste de senha",$retorno[0]["senha"]));
         $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[0]["data_cad"]));
-        $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[0]["data_mod"]));
+        $this->assertSame(NULL,$retorno[0]["data_mod"]);
         $this->assertSame(3,$retorno[0]["nivel"]);
         $this->assertSame(NULL,$retorno[0]["organizacao"]);
         $this->assertSame(0,$retorno[0]["inativo"]);
@@ -167,7 +167,7 @@ final class UsuariosBancoTest extends TestCase
 
         $_dados["nome"] = "Usuario%1";
 
-        $retorno = $UsuariosBanco->buscarUsuario($_dados);
+        $retorno = $UsuariosBanco->buscarUsuario($_dados,true);
         $this->assertIsArray($retorno);
         unset($_dados);
         $this->assertCount(2,$retorno);
@@ -188,7 +188,7 @@ final class UsuariosBancoTest extends TestCase
         $this->assertSame("Usuario_1_1@mail.xyz",$retorno[1]["email"]);
         $this->assertTrue(password_verify("teste de senha",$retorno[1]["senha"]));
         $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[1]["data_cad"]));
-        $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[1]["data_mod"]));
+        $this->assertSame(NULL,$retorno[1]["data_mod"]);
         $this->assertSame(3,$retorno[1]["nivel"]);
         $this->assertSame(NULL,$retorno[1]["organizacao"]);
         $this->assertSame(0,$retorno[1]["inativo"]);
@@ -196,7 +196,7 @@ final class UsuariosBancoTest extends TestCase
 
         $_dados["email"] = "Usuario_1_1@mail.xyz";
 
-        $retorno = $UsuariosBanco->buscarUsuario($_dados);
+        $retorno = $UsuariosBanco->buscarUsuario($_dados,true);
         $this->assertIsArray($retorno);
         unset($_dados);
         $this->assertCount(1,$retorno);
@@ -207,7 +207,7 @@ final class UsuariosBancoTest extends TestCase
         $this->assertSame("Usuario_1_1@mail.xyz",$retorno[0]["email"]);
         $this->assertTrue(password_verify("teste de senha",$retorno[0]["senha"]));
         $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[0]["data_cad"]));
-        $this->assertSame(strlen(date("Y-m-d H:i:s")),strlen($retorno[0]["data_mod"]));
+        $this->assertSame(NULL,$retorno[0]["data_mod"]);
         $this->assertSame(3,$retorno[0]["nivel"]);
         $this->assertSame(NULL,$retorno[0]["organizacao"]);
         $this->assertSame(0,$retorno[0]["inativo"]);
@@ -215,7 +215,7 @@ final class UsuariosBancoTest extends TestCase
 
         $_dados["nivel"] = "1";
 
-        $retorno = $UsuariosBanco->buscarUsuario($_dados);
+        $retorno = $UsuariosBanco->buscarUsuario($_dados,true);
         $this->assertIsArray($retorno);
         unset($_dados);
         $this->assertCount(1,$retorno);
@@ -234,7 +234,7 @@ final class UsuariosBancoTest extends TestCase
 
         $_dados["organizacao"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
 
-        $retorno = $UsuariosBanco->buscarUsuario($_dados);
+        $retorno = $UsuariosBanco->buscarUsuario($_dados,true);
         $this->assertIsArray($retorno);
         unset($_dados);
         $this->assertCount(1,$retorno);
