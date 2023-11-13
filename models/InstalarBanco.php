@@ -1,12 +1,13 @@
 <?php
 namespace SiCATan_api\Models;
 
+
 final class InstalarBanco extends ConexaoBanco
 {
     public function criarNivelAcesso(): array|false
     {
         $_sql = "CREATE TABLE Nivel_Acesso (
-                    id INT(11)  PRIMARY KEY,
+                    id INT  PRIMARY KEY,
                     descricao   VARCHAR(50) 
                 ) ENGINE = InnoDB;";
 
@@ -43,7 +44,7 @@ final class InstalarBanco extends ConexaoBanco
                     email       VARCHAR(60) UNIQUE NOT NULL,
                     senha       VARCHAR(255) NOT NULL,
                     data_cad    DATETIME NOT NULL,
-                    nivel       INT(11) NOT NULL,
+                    nivel       INT NOT NULL,
                     organizacao CHAR(36),
                     inativo     BOOL NOT NULL,
                     FOREIGN KEY (organizacao) REFERENCES Organizacao(id) ON DELETE SET NULL,
