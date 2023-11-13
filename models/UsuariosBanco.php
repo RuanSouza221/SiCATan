@@ -46,7 +46,7 @@ class UsuariosBanco extends ConexaoBanco
         if(empty($_where["id"])){
             return ["status" => false, "motivo" => "sem id"];
         }
-        if(count($_update) == 0) {
+        if(empty($_update) || count($_update) == 0) {
             return ["status" => false, "motivo" => "sem dados a atualizar"];
         }
 
@@ -61,9 +61,9 @@ class UsuariosBanco extends ConexaoBanco
         }
     }
 
-    public function buscarUsuario(array $_dados): array
+    public function buscarUsuario(array $_dados, bool $_login=false, string|null $_order=NULL): array
     {
-        $_campos = ["id","email","nivel","organizacao"];
+        $_campos = ["id","email","nivel","organizacao","inativo"];
         foreach ($_campos as $campo){
             if(!empty($_dados[$campo])){
                 $this->constroiBind($campo,$_dados[$campo]);
@@ -72,11 +72,21 @@ class UsuariosBanco extends ConexaoBanco
         if(!empty($_dados["nome"]))
             $this->constroiBind("nome",$_dados["nome"],"LIKE");
 
-        $_sql = "SELECT u.id, u.nome, u.email, u.senha, u.data_cad,
+        if($_login)
+            $_senha = "u.senha,";
+        else
+            $_senha = "";
+
+        if(!empty($_order)){
+            $order = "ORDER BY $_order ASC;";
+        }
+
+        $_sql = "SELECT u.id, u.nome, u.email, $_senha u.data_cad,
                     (select data_mod from Log_Usuarios where id_usuario=u.id order by data_mod desc limit 1) as data_mod,
                     u.nivel, u.organizacao, u.inativo
                 FROM Usuarios u
-                WHERE {$this->constroiWhere()};";
+                WHERE {$this->constroiWhere()}
+                ". ($order ?? ";");
 
         return $this->executar($_sql);
     }
