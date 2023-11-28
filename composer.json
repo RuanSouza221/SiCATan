@@ -4,10 +4,14 @@
     },
     "autoload": {
         "psr-4": {
-            "SiCATan_api\\Models\\": "models/"
+            "SiCATan_api\\Models\\": "models/",
+            "SiCATan_api\\Controllers\\": "controllers/"
         }
     },
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ramsey/uuid": "^4.7",
+        "lcobucci/jwt": "^5.1",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }
