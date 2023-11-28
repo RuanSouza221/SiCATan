@@ -8,5 +8,6 @@
         <env name="DATABASE_PASS" value="" />
         <env name="DATABASE_NAME" value="SiCATan" />
         <env name="CHAVE_TOKEN" value='LzpwVD5aJiwnJD9aQXd3WHxpQWdIcmFUfHE+VktXc3c2U2JMOD52YlZvPFMzc2pEQ2w=' />
+        <env name="BASE_URI" value='localhost:8000' />
     </php>
 </phpunit>
