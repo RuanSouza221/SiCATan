@@ -11,6 +11,7 @@
     "require": {
         "ext-pdo": "*",
         "ramsey/uuid": "^4.7",
-        "lcobucci/jwt": "^5.1"
+        "lcobucci/jwt": "^5.1",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }
