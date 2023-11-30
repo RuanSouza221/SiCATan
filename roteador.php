@@ -110,6 +110,20 @@ switch ($endpoint){
         if($_SERVER["REQUEST_METHOD"] == "POST")
             echo $Controller->loginConta($_dados);
         die();
+    case "organizacao":
+        $Controller = new Controllers\OrganizacaoController();
+        switch ($_SERVER["REQUEST_METHOD"]){
+            case "POST":
+                echo $Controller->postOrganizacao($_dados,$token);
+                die();
+            case "PUT":
+                echo $Controller->putOrganizacao($_dados,$token);
+                die();
+            case "GET":
+                echo $Controller->getOrganizacao($token,$_id);
+                die();
+        }
+        die();
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Endpoint não encontrado']);
