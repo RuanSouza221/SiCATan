@@ -101,13 +101,15 @@ final class InstalarBanco extends ConexaoBanco
     public function criarAtivos(): bool
     {
         $_sql = "CREATE TABLE Ativos (
-                    id          CHAR(36) PRIMARY KEY UNIQUE,
-                    descricao   VARCHAR(60) NOT NULL,
-                    data_cad    DATETIME NOT NULL,
-                    categoria   VARCHAR(60) NOT NULL,
-                    organizacao CHAR(36) NOT NULL,
-                    inativo     BOOL NOT NULL,
-                    FOREIGN KEY (organizacao) REFERENCES Organizacao(id)
+                    id              CHAR(36) PRIMARY KEY UNIQUE,
+                    descricao       VARCHAR(60) NOT NULL,
+                    data_cad        DATETIME NOT NULL,
+                    categoria       VARCHAR(60) NOT NULL,
+                    organizacao     CHAR(36) NOT NULL,
+                    inativo         BOOL NOT NULL,
+                    ativo_ambiente  CHAR(36),
+                    FOREIGN KEY (organizacao) REFERENCES Organizacao(id),
+                    FOREIGN KEY (ativo_ambiente) REFERENCES Ativos(id) ON DELETE SET NULL
                 ) ENGINE = InnoDB;";
 
         return $this->executar($_sql);
@@ -122,37 +124,6 @@ final class InstalarBanco extends ConexaoBanco
                     data_mod        DATETIME NOT NULL,
                     usuario_mod     CHAR(36) NOT NULL,
                     FOREIGN KEY (id_ativo_mod) REFERENCES Ativos(id),
-                    FOREIGN KEY (usuario_mod) REFERENCES Usuarios(id)
-                ) ENGINE = InnoDB;";
-
-        return $this->executar($_sql);
-    }
-
-    public function criarAtivoAmbiente(): bool
-    {
-        $_sql = "CREATE TABLE Ativo_Ambiente (
-                    id                  CHAR(36) PRIMARY KEY UNIQUE,
-                    id_ativo            CHAR(36) NOT NULL,
-                    id_ativo_ambiente   CHAR(36) NOT NULL,
-                    data_cad            DATETIME NOT NULL,
-                    inativo             BOOL NOT NULL,
-                    FOREIGN KEY (id_ativo) REFERENCES Ativos(id),
-                    FOREIGN KEY (id_ativo_ambiente) REFERENCES Ativos(id),
-                    UNIQUE (id_ativo,id_ativo_ambiente)
-                ) ENGINE = InnoDB;";
-
-        return $this->executar($_sql);
-    }
-
-    public function criarLogAtivoAmbiente(): bool
-    {
-        $_sql = "CREATE TABLE Log_Ativo_Ambiente (
-                    id                      CHAR(36) PRIMARY KEY UNIQUE,
-                    id_ativo_ambiente_mod   CHAR(36) NOT NULL,
-                    descricao_mod           VARCHAR(60) NOT NULL,
-                    data_mod                DATETIME NOT NULL,
-                    usuario_mod             CHAR(36) NOT NULL,
-                    FOREIGN KEY (id_ativo_ambiente_mod) REFERENCES Ativo_Ambiente(id),
                     FOREIGN KEY (usuario_mod) REFERENCES Usuarios(id)
                 ) ENGINE = InnoDB;";
 
