@@ -275,7 +275,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(0,json_decode($retorno)[0]->inativo);
         $this->assertSame(NULL,json_decode($retorno)[0]->ativo_ambiente);
         $this->assertSame(1,json_decode($retorno)[0]->conteudo_qtd);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
         //categoria
         $GET["categoria"] = "Categoria_8";
@@ -293,7 +293,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(0,json_decode($retorno)[0]->inativo);
         $this->assertSame(NULL,json_decode($retorno)[0]->ativo_ambiente);
         $this->assertSame(1,json_decode($retorno)[0]->conteudo_qtd);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
         //organizacao
         (new AtivosBanco())->updateSimples("Usuarios",["organizacao"=>"aeab3060-01fe-4809-9a55-01a50da7dacb"],["nome"=>"Usuario 1 test"]);
@@ -312,7 +312,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(0,json_decode($retorno)[0]->inativo);
         $this->assertSame(NULL,json_decode($retorno)[0]->ativo_ambiente);
         $this->assertSame(0,json_decode($retorno)[0]->conteudo_qtd);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
         //organizacao
         $GET["organizacao"] = "9b31781c-c2fd-49c5-af37-1538ee2f7cdb";
@@ -339,7 +339,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(0,json_decode($retorno)[1]->inativo);
         $this->assertSame(NULL,json_decode($retorno)[1]->ativo_ambiente);
         $this->assertSame(1,json_decode($retorno)[1]->conteudo_qtd);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
         //ativo_ambiente
         $GET["ativo_ambiente"] = $_ativo_8["id"];
@@ -357,7 +357,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(0,json_decode($retorno)[0]->inativo);
         $this->assertSame($_ativo_8["id"],json_decode($retorno)[0]->ativo_ambiente);
         $this->assertSame(0,json_decode($retorno)[0]->conteudo_qtd);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
         $token["id"] = "302f91e2-57ac-47b4-9ea1-ce524cf77f9d";
         $token["nivel"] = 1;
@@ -366,7 +366,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(400,http_response_code());
         $this->assertSame("error",json_decode($retorno)->status);
         $this->assertSame("Dados ausentes",json_decode($retorno)->message);
-        unset($ID,$token,$GET);
+        unset($token);
 
         $GET["categoria"] = "Categoria_8";
         $token["id"] = "e9bc84ff-f66b-41e9-a0fe-d0a82a00a567";
@@ -376,7 +376,7 @@ final class AtivosControllerTest extends TestCase
         $this->assertSame(404,http_response_code());
         $this->assertSame("error",json_decode($retorno)->status);
         $this->assertSame("Resultado não encontrado",json_decode($retorno)->message);
-        unset($ID,$token,$GET);
+        unset($token,$GET);
 
     }
 }
