@@ -72,6 +72,11 @@ class AtivosBanco extends ConexaoBanco
                 $this->constroiBind($campo,$_dados[$campo]);
             }
         }
+
+        if(array_key_exists("ativo_ambiente",$_dados) && $_dados["ativo_ambiente"] === NULL){
+            $this->constroiBind("ativo_ambiente",NULL,"IS");
+        }
+
         if(!empty($_dados["descricao"]))
             $this->constroiBind("descricao",$_dados["descricao"],"LIKE");
 
