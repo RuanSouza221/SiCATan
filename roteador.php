@@ -124,6 +124,20 @@ switch ($endpoint){
                 die();
         }
         die();
+    case "ativos":
+        $Controller = new Controllers\AtivosController();
+        switch ($_SERVER["REQUEST_METHOD"]){
+            case "POST":
+                echo $Controller->postAtivo($_dados,$token);
+                die();
+            case "PUT":
+                echo $Controller->putAtivo($_dados,$token);
+                die();
+            case "GET":
+                echo $Controller->getAtivo($token,$_id,$_dados);
+                die();
+        }
+        die();
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Endpoint não encontrado']);
