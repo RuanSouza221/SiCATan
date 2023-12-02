@@ -180,7 +180,7 @@ final class AtivosBancoTest extends TestCase
         $retorno = $AtivosBanco->buscarAtivo($_dados);
         $this->assertIsArray($retorno);
         unset($_dados);
-        $this->assertCount(6,$retorno);
+        $this->assertCount(8,$retorno);
         $this->assertCount(8,$retorno[0]);
         $this->assertSame("61aec667-2716-4672-8765-85a87226d05f",$retorno[0]["id"]);
         $this->assertSame("Ativo_1",$retorno[0]["descricao"]);
