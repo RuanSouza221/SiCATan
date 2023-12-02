@@ -84,7 +84,9 @@ class AtivosBanco extends ConexaoBanco
                     (select count(id) from Ativos where at.id=ativo_ambiente) as conteudo_qtd
                 FROM Ativos at
                 WHERE {$this->constroiWhere()}
-                ORDER BY at.descricao ASC;";
+                ORDER BY LEFT(at.descricao,3),REGEXP_REPLACE(at.descricao, '[0-9]', ''),
+                        IF(REGEXP_LIKE(at.descricao, '[0-9]+'), CAST(REGEXP_REPLACE(at.descricao, '[^0-9]+', ' ') AS SIGNED), 0),
+                        at.descricao;";
 
         return $this->executar($_sql);
     }
