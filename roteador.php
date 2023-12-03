@@ -5,6 +5,12 @@ header('Content-Type: application/json');
 header('Accept: application/json');
 header('Cache-Control: no-cache');
 header('X-Content-Type-Options: nosniff');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+if($_SERVER["REQUEST_METHOD"] === "OPTIONS"){
+    die();
+}
 
 
 use Lcobucci\JWT\Token\Parser;
